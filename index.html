@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>💖 รับคำปรึกษาออนไลน์ 💖</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+        body {
+            background-image: url('https://drive.google.com/uc?export=view&id=1uem36LeFvOPiMErcK8qVyP456eroy9PB');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            font-family: 'Press Start 2P', cursive;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            animation: bg-move 5s infinite linear;
+        }
+
+        @keyframes bg-move {
+            from { background-position: 0 0; }
+            to { background-position: 100px 100px; }
+        }
+
+        .container {
+            width: 90%;
+            max-width: 600px;
+            margin: 50px auto;
+            background: rgba(255, 235, 153, 0.8); /* ให้พื้นหลังภายในโปร่งแสง */
+            padding: 20px;
+            border: 8px solid #ff66b2;
+            border-radius: 15px;
+            box-shadow: 10px 10px 0px #d94f8c;
+            position: relative;
+        }
+
+        h1 {
+            font-size: 18px;
+            color: #333;
+            text-shadow: 2px 2px #ff66b2;
+            animation: blink 1s infinite alternate;
+        }
+
+        @keyframes blink {
+            0% { opacity: 1; }
+            100% { opacity: 0.7; }
+        }
+
+        .button {
+            display: inline-block;
+            background: #ff66b2;
+            color: white;
+            padding: 15px 20px;
+            text-decoration: none;
+            font-size: 14px;
+            border-radius: 8px;
+            box-shadow: 4px 4px 0px #d94f8c;
+            transition: 0.2s;
+            animation: pulse 1.5s infinite;
+        }
+
+        .button:hover {
+            transform: scale(1.1);
+            box-shadow: 6px 6px 0px #d94f8c;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .pixel-mascot {
+            width: 100px;
+            height: 100px;
+            image-rendering: pixelated;
+            position: fixed;
+            bottom: 10px;
+            right: 10px;
+            animation: float 3s infinite ease-in-out;
+            cursor: pointer;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-5px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .chatbot {
+            position: fixed;
+            bottom: 80px;
+            right: 10px;
+            background: #fff;
+            padding: 10px;
+            border-radius: 10px;
+            box-shadow: 3px 3px 0px #d94f8c;
+            display: none;
+            text-align: left;
+            width: 200px;
+        }
+
+        .chatbot p {
+            font-size: 12px;
+            color: #333;
+            margin: 5px 0;
+        }
+
+        .quiz-container {
+            background: #f9f9f9;
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 30px;
+            box-shadow: 3px 3px 0px #d94f8c;
+        }
+
+        .quiz-button {
+            background: #ff66b2;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            font-size: 14px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+        }
+
+        .quiz-button:hover {
+            background: #ff3399;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>💖 รับคำปรึกษาออนไลน์ 💖</h1>
+        <p>กรอกข้อมูลในฟอร์มด้านล่างเพื่อรับคำปรึกษาออนไลน์:</p>
+
+        <!-- ฝัง Google Form -->
+        <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSc8MI6oBXXzzjbZ5yLmtkF2G9uy_H8eKM-kgF7xgH_YqY2j5Q/viewform" width="640" height="480" frameborder="0" marginheight="0" marginwidth="0">กำลังโหลด…</iframe>
+
+        <div class="chatbot" id="chatbot">
+            <p>🤖 สวัสดี! มีอะไรให้ช่วยไหม?</p>
+            <p>📝 คุณสามารถกดปุ่มเพื่อขอคำปรึกษาได้เลย</p>
+        </div>
+
+        <!-- มาสคอตพิกเซล -->
+        <img src="https://drive.google.com/uc?export=view&id=1uem36LeFvOPiMErcK8qVyP456eroy9PB" alt="Pixel Mascot" class="pixel-mascot" onclick="toggleChatbot()">
+        
+        <a href="YOUR_GOOGLE_FORM_LINK" class="button" onclick="playClickSound()" target="_blank">📋 รับคำปรึกษา</a>
+
+        <div class="quiz-container">
+            <h2>🧠 เกมตอบคำถามสุขภาพจิต</h2>
+            <p id="question">คำถามจะปรากฏที่นี่</p>
+            <button class="quiz-button" onclick="checkAnswer(true)">✅ ใช่</button>
+            <button class="quiz-button" onclick="checkAnswer(false)">❌ ไม่ใช่</button>
+            <p id="score">คะแนน: 0</p>
+        </div>
+
+    </div>
+
+    <audio id="clickSound" src="https://www.myinstants.com/media/sounds/click.mp3"></audio>
+    <audio id="bgMusic" src="https://www.bensound.com/bensound-music/bensound-cute.mp3" loop></audio>
+
+    <script>
+        function playClickSound() {
+            document.getElementById('clickSound').play();
+        }
+
+        function toggleChatbot() {
+            var chatbot = document.getElementById("chatbot");
+            chatbot.style.display = chatbot.style.display === "none" ? "block" : "none";
+        }
+
+        window.onload = function() {
+            document.getElementById('bgMusic').play();
+        }
+
+        const questions = [
+            { question: "สุขภาพจิตที่ดีคือการไม่มีความเครียดเลย?", answer: false },
+            { question: "การออกกำลังกายช่วยให้สุขภาพจิตดีขึ้นได้?", answer: true },
+            { question: "การพูดคุยกับเพื่อนสามารถช่วยลดความเครียดได้?", answer: true },
+            { question: "การอดนอนเป็นเวลานานไม่ส่งผลต่อสุขภาพจิต?", answer: false }
+        ];
+
+        let currentQuestion = 0;
+        let score = 0;
+
+        function loadQuestion() {
+            document.getElementById("question").innerText = questions[currentQuestion].question;
+        }
+
+        function checkAnswer(userAnswer) {
+            if (userAnswer === questions[currentQuestion].answer) {
+                score += 10;
+            }
+            currentQuestion++;
+            if (currentQuestion < questions.length) {
+                loadQuestion();
+            } else {
+                document.getElementById("question").innerText = "🎉 จบเกม! คุณได้ " + score + " คะแนน!";
+                document.querySelectorAll(".quiz-button").forEach(btn => btn.style.display = "none");
+            }
+            document.getElementById("score").innerText = "คะแนน: " + score;
+        }
+
+        window.onload = loadQuestion;
+    </script>
+
+</body>
+</html>
